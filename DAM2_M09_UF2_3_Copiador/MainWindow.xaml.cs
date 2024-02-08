@@ -49,7 +49,7 @@ namespace DAM2_M09_UF2_3_Copiador
 
         private void btnCopia_Click(object sender, RoutedEventArgs e) // copia async
         {
-
+            // ejecutra cmd o poweshell
         }
     }
 }
