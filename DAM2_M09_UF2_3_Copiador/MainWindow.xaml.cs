@@ -105,10 +105,38 @@ namespace DAM2_M09_UF2_3_Copiador
 
         private void btnEvents_Click(object sender, RoutedEventArgs e)
         {
+            // ejecutra cmd o poweshell
 
+            var pathOrigen = this.tbOrigen.Text;
+            var pathDesti = this.tbDesti.Text;
+
+            if (!(Directory.Exists(pathOrigen) && Directory.Exists(pathDesti)))
+            {
+                throw new Exception("no existen los directorios, wey");
+            }
+
+            Process p = new Process();
+            p.StartInfo.FileName = "powershell";
+            p.StartInfo.Arguments = $" -command xcopy {pathOrigen} {pathDesti} /s /y"; // modo sobreescribir 
+            p.StartInfo.UseShellExecute = false;
+            p.EnableRaisingEvents = true;
+            p.Exited += P_Exited; ;
+            p.Start();
+            
         }
 
-        
+        private void P_Exited(object? sender, EventArgs e)
+        {
+            if (sender == null) throw new Exception("Exception, el pruces es null");
 
+            var p = (Process)sender;
+
+            if (p.HasExited)
+            {
+                if (p.ExitCode != 0) lbStatus.Content = "Copia incorrecta";
+                else lbStatus.Content = "Copia correcta";
+            }
+            else lbStatus.Content = "Has tardado mas de 1 min en copiar";
+        }
     }
 }
