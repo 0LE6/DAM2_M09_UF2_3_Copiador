@@ -75,5 +75,20 @@ namespace DAM2_M09_UF2_3_Copiador
             }
             else lbStatus.Content = "Has tardado mas de 1 min en copiar";
         }
+
+        private void btnEvents_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAsincrona_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCopiar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
