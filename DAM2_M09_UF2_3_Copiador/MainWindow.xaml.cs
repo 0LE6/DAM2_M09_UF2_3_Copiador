@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,13 +45,35 @@ namespace DAM2_M09_UF2_3_Copiador
             var ofd = new FolderBrowserDialog(); // doble click en el projecto y ponemos a true el useWindowsForms
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.tbDesti.Text = ofd.SelectedPath; // para seleccionar un directorio
+                this.tbDesti.Text = ofd.SelectedPath; // para seleccionar un directorio 
             }
         }
 
         private void btnCopia_Click(object sender, RoutedEventArgs e) // copia async
         {
             // ejecutra cmd o poweshell
+
+            var pathOrigen = this.tbOrigen.Text;
+            var pathDesti = this.tbDesti.Text;
+
+            if (!(Directory.Exists(pathOrigen) && Directory.Exists(pathDesti)))
+            {
+                throw new Exception("no existen los directorios, wey");
+            }
+
+            Process p = new Process();
+            p.StartInfo.FileName = "powershell";
+            p.StartInfo.Arguments = $" -command xcopy {pathOrigen} {pathDesti} /s /y"; // modo sobreescribir 
+            p.StartInfo.UseShellExecute = false;
+            p.Start();
+            p.WaitForExit(60000);
+
+            if (p.HasExited)
+            {
+                if (p.ExitCode != 0) lbStatus.Content = "Copia incorrecta";
+                else lbStatus.Content = "Copia correcta";
+            }
+            else lbStatus.Content = "Has tardado mas de 1 min en copiar";
         }
     }
 }

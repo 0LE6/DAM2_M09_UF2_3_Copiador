@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAM2_M09_UF2_3_Copiador"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="750">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -15,9 +15,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBox Name="tbOrigen" Grid.Column="0" Grid.Row="0"></TextBox>
-        
+
         <Button Grid.Column="1" Grid.Row="0" Name="btnOrigen" Click="btnOrigen_Click">
             <Image Source="f.jpg"></Image>
         </Button>
@@ -26,5 +27,6 @@
             <Image Source="f.jpg" ></Image>
         </Button>
         <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Copia" FontSize="30" Name="btnCopia" Click="btnCopia_Click"></Button>
+        <Label Grid.Column="0" Grid.Row="3" Name="lbStatus"></Label>
     </Grid>
 </Window>
