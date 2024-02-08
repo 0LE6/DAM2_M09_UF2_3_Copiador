@@ -133,10 +133,24 @@ namespace DAM2_M09_UF2_3_Copiador
 
             if (p.HasExited)
             {
-                if (p.ExitCode != 0) lbStatus.Content = "Copia incorrecta";
-                else lbStatus.Content = "Copia correcta";
+                if (p.ExitCode != 0)
+                {
+                    // el Action y dispatcher solucionan el problema ue pete despues de realizar la copia
+                    Action a = () => lbStatus.Content = "Copia incorrecta";
+                    Dispatcher.Invoke(a);
+                }
+                else
+                {
+                    Action a = () => lbStatus.Content = "Copia correcta";
+                    Dispatcher.Invoke(a);
+                }
+
             }
-            else lbStatus.Content = "Has tardado mas de 1 min en copiar";
+            else
+            {
+                Action a = () => lbStatus.Content = "Has tardado mas de 1 min en copiar";
+                Dispatcher.Invoke(a);
+            }
         }
     }
 }
