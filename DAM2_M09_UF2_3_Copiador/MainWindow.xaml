@@ -17,11 +17,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBox Name="tbOrigen" Grid.Column="0" Grid.Row="0"></TextBox>
+        
         <Button Grid.Column="1" Grid.Row="0" Name="btnOrigen" Click="btnOrigen_Click">
             <Image Source="f.jpg"></Image>
         </Button>
+        <TextBox Name="tbDesti" Grid.Column="0" Grid.Row="1"></TextBox>
         <Button Grid.Column="1" Grid.Row="1" Name="btnDesti" Click="btnDesti_Click">
-            <Image Source="f.jpg"></Image>
+            <Image Source="f.jpg" ></Image>
         </Button>
         <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Copia" FontSize="30" Name="btnCopia" Click="btnCopia_Click"></Button>
     </Grid>
