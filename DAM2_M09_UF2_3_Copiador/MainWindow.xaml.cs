@@ -66,7 +66,34 @@ namespace DAM2_M09_UF2_3_Copiador
             p.StartInfo.Arguments = $" -command xcopy {pathOrigen} {pathDesti} /s /y"; // modo sobreescribir 
             p.StartInfo.UseShellExecute = false;
             p.Start();
-            p.WaitForExit(60000);
+            p.WaitForExit(6000);
+
+            if (p.HasExited)
+            {
+                if (p.ExitCode != 0) lbStatus.Content = "Copia incorrecta";
+                else lbStatus.Content = "Copia correcta";
+            }
+            else lbStatus.Content = "Has tardado mas de 1 min en copiar";
+        }
+
+        private async void btnAsincrona_Click(object sender, RoutedEventArgs e)
+        {
+            // ejecutra cmd o poweshell
+
+            var pathOrigen = this.tbOrigen.Text;
+            var pathDesti = this.tbDesti.Text;
+
+            if (!(Directory.Exists(pathOrigen) && Directory.Exists(pathDesti)))
+            {
+                throw new Exception("no existen los directorios, wey");
+            }
+
+            Process p = new Process();
+            p.StartInfo.FileName = "powershell";
+            p.StartInfo.Arguments = $" -command xcopy {pathOrigen} {pathDesti} /s /y"; // modo sobreescribir 
+            p.StartInfo.UseShellExecute = false;
+            p.Start();
+            await p.WaitForExitAsync();
 
             if (p.HasExited)
             {
@@ -81,14 +108,7 @@ namespace DAM2_M09_UF2_3_Copiador
 
         }
 
-        private void btnAsincrona_Click(object sender, RoutedEventArgs e)
-        {
+        
 
-        }
-
-        private void btnCopiar_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

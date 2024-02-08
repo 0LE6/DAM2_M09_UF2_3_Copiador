@@ -29,12 +29,10 @@
             <Image Source="f.jpg" ></Image>
         </Button>
         <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Copia" FontSize="30" Name="btnCopia" Click="btnCopia_Click"></Button>
-        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Copia directori" FontSize="40"
-                Name="btnCopiar" Click="btnCopiar_Click"/>
-        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Copia Asincrona" FontSize="40"
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Copia Asincrona" FontSize="30"
                 Name="btnAsincrona" Click="btnAsincrona_Click"/>
-        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Copia per Events" FontSize="40"
+        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Copia per Events" FontSize="30"
                 Name="btnEvents" Click="btnEvents_Click"/>
-        <Label Grid.Column="0" Grid.Row="3" Name="lbStatus"></Label>
+        <Label Grid.Column="0" Grid.Row="5" Name="lbStatus"></Label>
     </Grid>
 </Window>
